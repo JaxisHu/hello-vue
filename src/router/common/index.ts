@@ -1,0 +1,11 @@
+const _import = (file:string) => () => import('@/views/' + file);
+const NotFound = _import('NotFound');
+
+export default [
+  {
+    path: '/404',
+    name: 'NotFound',
+    component: NotFound,
+    meta: { title: '404了哟' },
+  }
+];

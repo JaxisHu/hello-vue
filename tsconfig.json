@@ -19,6 +19,21 @@
     "paths": {
       "@/*": [
         "src/*"
+      ],
+      "@C/*": [
+        "src/components/*"
+      ],
+      "@U/*": [
+        "src/utils/*"
+      ],
+      "@T/*": [
+        "src/types/*"
+      ],
+      "@A/*": [
+        "src/api/*"
+      ],
+      "@S/*": [
+        "src/styles/*"
       ]
     },
     "lib": [
