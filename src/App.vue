@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <keep-alive :include="cachedViews">
+    <keep-alive>
       <router-view></router-view>
     </keep-alive>
 
@@ -20,10 +20,10 @@
 </template>
 
 <script lang="ts">
-  import { Vue, Component, Watch, Provide, Mixins } from "vue-property-decorator";
+  import { Component, Watch, Provide, Mixins } from "vue-property-decorator";
   import { Action } from "vuex-class";
   import app from "./app";
-  import { qusObj } from "@U/cache";
+  // import { qusObj } from "@U/cache";
   // import { api } from './api';
 
   @Component({
@@ -42,8 +42,6 @@
       await this.loadVuex();
     }
 
-    private cachedViews: string[] = [];
-    private history: string[] = [];
     private confirmInfo = {
       show: false,
       title: "",
@@ -60,28 +58,13 @@
 
     @Watch("$route")
     onRouteChange(to: any) {
-      const componentName =
-          to.matched[to.matched.length - 1].components.default.extendOptions.name || "";
-      const history = this.history;
       if (to) {
-        if (to.path === history[history.length - 2]) {
-          this.cachedViews.splice(history.length - 1, 1);
-          this.history.splice(history.length - 1, 1);
-        } else {
-          this.cachedViews.push(componentName);
-          this.history.push(to.path);
-        }
+        console.log('history to>>>', to);
       }
-      this.setHistory({ history: this.history.length, name: this.cachedViews });
     }
 
     loadVuex() {
 
-    }
-
-    navigatorUserAgent() {
-      const ua = navigator.userAgent.toLowerCase();
-      return (ua.indexOf('iphone') != -1) || (ua.indexOf('ipad') != -1);
     }
 
     handleCancel() {

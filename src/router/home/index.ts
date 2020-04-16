@@ -1,10 +1,16 @@
-const _import = (file:string) => () => import('@/views/' + file);
+const _import = (file: string) => () => import('@/views/' + file);
 const Home = _import("Home");
 const About = _import("About");
 
 export default [
   {
     path: '/',
+    name: 'Home',
+    component: Home,
+    meta: { title: '主页哟' },
+  },
+  {
+    path: '/home',
     name: 'Home',
     component: Home,
     meta: { title: '主页哟' },

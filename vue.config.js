@@ -66,7 +66,8 @@ module.exports = {
 				// 这里的选项会传递给 css-loader
 			},
 			sass: {
-				data: `@import "@S/variables.scss";@import "@S/mixin.scss";`
+				// 旧data  新prependData
+				prependData: `@import "@S/variables.scss";@import "@S/mixin.scss";`
 			}
 		}
 	},

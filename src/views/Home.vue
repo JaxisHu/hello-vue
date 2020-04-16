@@ -8,15 +8,14 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import HelloWorld from '@C/HelloWorld.vue'
+import HelloWorld from '@C/HelloWorld.vue';
 
 @Component({
-  name: "home",
+  name: "Home",
   components: { HelloWorld }
 })
 export default class Home extends Vue {
   activated(): void {
-    console.log(`${process.env.BASE_URL}service-worker.js`);
     console.log("activated run");
   }
 

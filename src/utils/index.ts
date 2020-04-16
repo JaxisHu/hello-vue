@@ -27,7 +27,7 @@ export default class Utils {
     });
   }
 
-  static getUrlParams(param: string) {
+  static parseUrlParams(param: string) {
     const reg = new RegExp("(^|&)" + param + "=([^&]*)(&|$)", "i");
     const tmp = window.location.hash.split("?");
     if (tmp.length <= 1) {
@@ -41,7 +41,7 @@ export default class Utils {
     }
   }
 
-  // 封装方法需求：针对获取微信授权页面的code和state，获取vue路由后带的参数请用上面的getUrlParams()
+  // 封装方法需求：针对获取微信授权页面的code和state，获取vue路由后带的参数请用上面的parseUrlParams()
   static getSearchUrlParams(param: string) {
     const reg = new RegExp("(^|&)" + param + "=([^&]*)(&|$)", "i");
     const tmp = window.location.search.split("?");

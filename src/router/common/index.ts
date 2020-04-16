@@ -1,5 +1,5 @@
-const _import = (file:string) => () => import('@/views/' + file);
-const NotFound = _import('NotFound');
+const _import = (file: string) => () => import('@/views/' + file);
+const NotFound = _import('not-found/Index');
 
 export default [
   {

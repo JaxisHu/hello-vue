@@ -1,0 +1,39 @@
+|-- ts-vue
+    |-- .browserslistrc     # browserslistrc 配置文件 (用于支持 Autoprefixer)
+    |-- .eslintrc.js        # eslint 配置
+    |-- .gitignore
+    |-- babel.config.js     # babel-loader 配置
+    |-- package-lock.json
+    |-- package.json        # package.json 依赖
+    |-- postcss.config.js   # postcss 配置
+    |-- README.md
+    |-- tsconfig.json       # typescript 配置
+    |-- vue.config.js       # vue-cli 配置
+    |-- public              # 静态资源 (会被直接复制)
+    |   |-- favicon.ico     # favicon图标
+    |   |-- index.html      # html模板
+    |-- src
+    |   |-- App.vue         # 入口页面
+    |   |-- main.ts         # 入口文件 加载组件 初始化等
+    |   |-- shims-tsx.d.ts
+    |   |-- shims-vue.d.ts
+    |   |-- assets          # 主题 字体等静态资源 (由 webpack 处理加载)
+    |   |-- components      # 全局组件
+    |   |-- router          # 路由
+    |   |-- store           # 全局 vuex store
+    |   |-- styles          # 全局样式
+    |   |-- views           # 所有页面
+    |-- tests               # 测试
+
+    tsconfig.json: typescript配置文件,主要用于指定待编译的文件和定义编译选项
+    shims-tsx.d.ts: 允许.tsx 结尾的文件，在 Vue 项目中编写 jsx 代码
+    shims-vue.d.ts: 主要用于 TypeScript 识别.vue 文件，Ts 默认并不支持导入 vue 文件
+
+    开始前我们先来了解一下在 vue 中使用 typescript 非常好用的几个库
+
+    vue-class-component: vue-class-component是一个 Class Decorator,也就是类的装饰器
+    vue-property-decorator: vue-property-decorator是基于 vue 组织里 vue-class-component 所做的拓展
+    import { Vue, Component, Inject, Provide, Prop, Model, Watch, Emit, Mixins } from 'vue-property-decorator';
+
+    vuex-module-decorators: 用 typescript 写 vuex 很好用的一个库
+    import { Module, VuexModule, Mutation, Action, MutationAction, getModule } from 'vuex-module-decorators';
