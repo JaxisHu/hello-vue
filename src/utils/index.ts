@@ -1,5 +1,15 @@
 /** 全局公共函数 */
 export default class Utils {
+  // 组装URL Params
+  static obj2params(obj: any = {}) {
+    let dataStr = '';
+    Object.keys(obj).forEach((key) => {
+      dataStr += `${key}=${obj[key]}&`;
+    });
+    const idx = dataStr.lastIndexOf('&');
+    return idx > -1? '?' + dataStr.slice(0, idx) : '';
+  }
+
   static formatDate(date: any, format?: any) {
     if (!date) return '-';
     if (!(date instanceof Date)) {

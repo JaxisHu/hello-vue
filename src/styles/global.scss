@@ -1,6 +1,265 @@
 @import "./mixin.scss";
 @import './variables.scss';
 
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	height: 100%;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+}
+
+html {
+	height: 100%;
+	background: $grey-bg;
+}
+
+#app {
+	height: 100%;
+}
+
+*,
+*:before,
+*:after {
+	box-sizing: border-box;
+}
+
+a,
+a:focus,
+a:hover {
+	color: inherit;
+	outline: none;
+	text-decoration: none;
+}
+
+div:focus {
+	outline: none;
+}
+
+.clearfix {
+	&:after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+}
+
+.fl{
+	float: left!important;
+}
+
+.fr{
+	float: right!important;
+}
+
+.color-primary{
+	color: $color-primary;
+}
+.color-success{
+	color: $color-success;
+}
+.color-warning{
+	color: $color-warning;
+}
+.color-danger{
+	color: $color-danger;
+}
+.color-grey{
+	color: $color-grey;
+}
+.color-lt-grey{
+	color: $color-grey;
+}
+.color-important {
+	color: $fc-important;
+}
+.color-main {
+	color: $main-font;
+}
+.color-vice {
+	color: $lt-black;
+}
+.color-white {
+	color: $white-bg;
+}
+.color-assist {
+	color: $assist-color;
+}
+.color-tips {
+	color: $color-tips;
+}
+.color-goods-red {
+	color: $color-goods-red;
+}
+.order-blue-color {
+	color: $order-blue-color;
+}
+.home-page-blue-color {
+	color: $home-page-blue-color;
+}
+
+.bg-white {
+	background-color: $white-bg;
+}
+
+// padding margin
+@for $i from 0 through 6 {
+	.pd-#{5 * $i} { padding: 5px * $i; }
+	.pdt-#{5 * $i} { padding-top: 5px * $i; }
+	.pdb-#{5 * $i} { padding-bottom: 5px * $i; }
+	.pdl-#{5 * $i} { padding-left: 5px * $i; }
+	.pdr-#{5 * $i} { padding-right: 5px * $i; }
+	.mgt-#{5 * $i} { margin-top: 5px * $i; }
+	.mgb-#{5 * $i} { margin-bottom: 5px * $i; }
+	.mgl-#{5 * $i} { margin-left: 5px * $i; }
+	.mgr-#{5 * $i} { margin-right: 5px * $i; }
+}
+
+.wp-100{
+	width: 100%;
+}
+.wp-50{
+	width: 50%;
+}
+.wp-25{
+	width: 25%;
+}
+.wp-33{
+	width: 33.3333%;
+}
+
+.pdt-50{
+	padding-top: 50px;
+}
+.pdt-80{
+	padding-top: 80px;
+}
+.mgt-50{
+	margin-top: 50px;
+}
+.mgt-80{
+	margin-top: 80px;
+}
+.mgt-100{
+	margin-top: 100px;
+}
+.mgb-50{
+	margin-bottom: 50px;
+}
+.mgb-80{
+	margin-bottom: 80px;
+}
+.mgb-100{
+	margin-bottom: 100px;
+}
+
+.tc {
+	text-align: center;
+}
+
+.tl {
+	text-align: left;
+}
+
+.tr {
+	text-align: right;
+}
+
+// svg size
+.svg{
+	@include wh(45px, 45px);
+}
+.svg-ms{
+	@include wh(30px, 30px);
+}
+.svg-mini{
+	@include wh(20px, 20px);
+}
+
+// font-size
+.fs-60 {
+	font-size: 60px;
+}
+
+.fs-36 {
+	font-size: 36px;
+}
+
+.fs-30 {
+	font-size: 30px;
+}
+
+.fs-26 {
+	font-size: 26px;
+}
+
+.fs-24 {
+	font-size: 24px;
+}
+
+.fs-22 {
+	font-size: 22px;
+}
+
+.fs-20 {
+	font-size: 20px;
+}
+
+.fs-18 {
+	font-size: 18px;
+}
+
+.fs-16 {
+	font-size: 16px;
+}
+
+.fs-14 {
+	font-size: 14px;
+}
+
+.fs-12 {
+	font-size: 12px;
+}
+
+// font-weight
+.fw-600 {
+	font-weight: 600;
+}
+
+.fw-400 {
+	font-weight: 400;
+}
+
+.fw-300 {
+	font-weight: 300;
+}
+
+// fixed
+.fix-top {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 10;
+}
+
+.radius-2 {
+	@include radius(2px);
+}
+.radius-5 {
+	@include radius(5px);
+}
+.radius-10 {
+	@include radius(10px);
+}
+
+.box-shadow {
+	box-shadow:0px 1px 5px rgba(0,0,0,0.1);
+}
+
 /* 底部按钮统一样式 */
 .bottom-btn {
 	width: 90%!important;
@@ -17,7 +276,7 @@
 }
 
 // 界面顶部背景
-.global-top-background {
+.g-top-bg {
 	position: absolute;
 	top: 0;
 	z-index: -1;
@@ -27,6 +286,6 @@
 	box-shadow: 0px 1px 5px rgba(0,0,0,0.1);
 }
 
-.text-line-through {
+.line-through {
 	text-decoration: line-through;
 }

@@ -7,7 +7,7 @@
   }
 }
 
-@mixin scrollBar {
+@mixin scroll-bar {
   &::-webkit-scrollbar-track-piece {
     background: #d3dce6;
   }
@@ -137,7 +137,7 @@
   background: -moz-linear-gradient(90deg, $color1, $color2); /* For Firefox 3.6 to 15 */
   background: linear-gradient(90deg, $color1, $color2); /* Standard syntax */
 }
-@mixin bg_img($url) {
+@mixin bg-img($url) {
   background-image: url($url);
   background-repeat: no-repeat;
   background-size: 100% 100%;

@@ -1,7 +1,7 @@
 <template>
-	<div class="not-find-page-index txtC pd15 bgcolor-white">
-		<span class="color-main fs-16">请您关注我的Git项目，并通过微信二维码添加好友。</span>
-		<img src="@/assets/qrcode.jpg" alt="HJ">
+	<div class="flex-col tc pd-15 pdt-50 bg-white">
+		<p class="color-main fs-16 mgb-15 fw-600">404了哦！请扫描下方微信二维码了解更多。</p>
+		<div><img class="wp-100" src="@/assets/qrcode.jpg" alt="HJ"></div>
 	</div>
 </template>
 
@@ -17,8 +17,5 @@
 </script>
 
 <style scoped lang="scss">
-	.not-find-page-index {
-		height: 100%;
-		padding-top: 100px;
-	}
+
 </style>

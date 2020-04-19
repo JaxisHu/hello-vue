@@ -6,11 +6,11 @@ $color-danger: #FF3A3A;
 $color-grey: #999999;
 $color-tips: #EA3323;
 /* font colors */
-$black-font: #000000;
-$lt-black-font: #666666;
+$dk-black: #000000;
 $main-font: #333333;
-$grey-bg: #F3F5F9;
+$lt-black: #666666;
 $lt-grey: #CCCCCC;
+$grey-bg: #F3F5F9;
 $fc-important: #FF1D4B;
 $assist-color: #5281DC;
 $color-goods-red: #FF2A2A;
@@ -19,7 +19,7 @@ $home-page-blue-color: #3EB2FF;
 /* border colors */
 $border-color-light: #dfe4ed;
 $border-color-lighter: #e6ebf5;
-$table-border:1px solid#dfe6ec;
+$table-border:1px solid #dfe6ec;
 /* background color */
 $white-bg: #ffffff;
 
@@ -30,10 +30,10 @@ $blue-bg: #042A5B;
 
 // The :export directive is the magic sauce for webpack
 // https://mattferderer.com/use-sass-variables-in-typescript-and-javascript
-export {
+:export {
   theme: $color-primary;
   mainFont: $main-font;
-  blackFont: $black-font;
-  ltBlackFont: $lt-black-font;
+  blackFont: $dk-black;
+  ltBlackFont: $lt-black;
   greyBg: $grey-bg
 }
