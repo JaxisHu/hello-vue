@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Axios from "axios";
 import { Dialog, Toast } from 'vant';
-import { qus } from "@U/cache";
+import { getStore } from "@U/cache";
 import Utils from '@U/index';
 
 const ajax = Axios.create({
@@ -23,7 +23,7 @@ const httpRequest = async (method: string = 'GET', url: string, data: any = {}, 
         url = Vue.prototype.$config.baseUrl + url;
       }
       // 从缓存中读取Token信息，加到header里面
-      const token = qus('token');
+      const token = getStore('token');
       ajax.defaults.headers.token = token;
 
       // POST请求时，支持表单提交，在config中配置contentType，

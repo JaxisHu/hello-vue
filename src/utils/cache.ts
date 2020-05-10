@@ -10,26 +10,23 @@ const prefix = process.env.NODE_ENV + '_';
  * @param val value
  */
 function isEmpty (val: any) {
-  if (val === null || val === 'undefined' || val === '') {
-    return true;
-  }
-  return false;
+  return val === null || val === 'undefined' || val === '';
 }
 
 /**
  * ============ Cookie ============
  */
-export function quc (name: string) {
+export function getCookie (name: string) {
   let val: any = Cookies.get(prefix + name);
   return val || null;
 }
 
-export function cunc (name: string, value: any, params= {}): void {
+export function setCookie (name: string, value: any, params= {}): void {
   if (isEmpty(value)) return;
   Cookies.set(prefix + name, value, params);
 }
 
-export function shanc (name: string, params= {}): void {
+export function removeCookie (name: string, params= {}): void {
   Cookies.remove(prefix + name, params);
 }
 
@@ -37,7 +34,7 @@ export function shanc (name: string, params= {}): void {
  * ============ localStorage ============
  */
 
-export const cun = function(key:string, value:any) {
+export const setStore = function(key:string, value:any) {
   key = prefix + key;
   if (typeof value == "undefined") {
     return;
@@ -50,23 +47,21 @@ export const cun = function(key:string, value:any) {
   }
 };
 
-export const qu = function(key:string) {
+export const getStore = function(key:string, type: any = 'str') {
   key = prefix + key;
-  return localStorage.getItem(key) || null;
+  const store: any = localStorage.getItem(key);
+  if(type === 'obj') {
+    return JSON.parse(store) || null;
+  }
+  return store || null;
 };
 
-export const quObj = function(key:string) {
-  key = prefix + key;
-  const jsonStr: any = localStorage.getItem(key);
-  return JSON.parse(jsonStr) || null;
-};
-
-export const shan = function(key:string) {
+export const removeStore = function(key:string) {
   key = prefix + key;
   return localStorage.removeItem(key);
 };
 
-export const shanAll = function() {
+export const clearStore = function() {
   return localStorage.clear();
 };
 
@@ -74,7 +69,7 @@ export const shanAll = function() {
  * ============ sessionStorage ============
  */
 
-export const cuns = function(key:string, value:any) {
+export const setSession = function(key:string, value:any) {
   key = prefix + key;
   if (typeof value == "undefined") {
     return;
@@ -87,22 +82,20 @@ export const cuns = function(key:string, value:any) {
   }
 };
 
-export const qus = function(key:string) {
+export const getSession = function(key:string, type: any = 'str') {
   key = prefix + key;
-  return sessionStorage.getItem(key) || null;
+  const sess: any = sessionStorage.getItem(key);
+  if(type === 'obj') {
+    return JSON.parse(sess) || null;
+  }
+  return sess || null;
 };
 
-export const qusObj = function(key:string) {
-  key = prefix + key;
-  const jsonStr: any = sessionStorage.getItem(key);
-  return JSON.parse(jsonStr) || null;
-};
-
-export const shans = function(key:string) {
+export const removeSession = function(key:string) {
   key = prefix + key;
   return sessionStorage.removeItem(key);
 };
 
-export const shansAll = function() {
+export const clearSession = function() {
   return sessionStorage.clear();
 };

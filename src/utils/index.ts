@@ -10,6 +10,13 @@ export default class Utils {
     return idx > -1? '?' + dataStr.slice(0, idx) : '';
   }
 
+  // yyyy-MM-dd => yyyy/MM/dd
+  static replaceSlash(data: string): string {
+    data = data.replace(/-/g, "/");
+    return data;
+  }
+
+  // 日期时间格式化
   static formatDate(date: any, format?: any) {
     if (!date) return '-';
     if (!(date instanceof Date)) {
@@ -37,24 +44,11 @@ export default class Utils {
     });
   }
 
-  static parseUrlParams(param: string) {
+  // mode: hash, vue路由后带的参数
+  // mode: search, 针对获取微信授权页面的code和state
+  static parseUrlParams(param: string, mode: any = 'hash') {
     const reg = new RegExp("(^|&)" + param + "=([^&]*)(&|$)", "i");
-    const tmp = window.location.hash.split("?");
-    if (tmp.length <= 1) {
-      return null;
-    }
-    const r = tmp[tmp.length - 1].match(reg);
-    if (r != null) {
-      return decodeURIComponent(r[2]);
-    } else {
-      return null;
-    }
-  }
-
-  // 封装方法需求：针对获取微信授权页面的code和state，获取vue路由后带的参数请用上面的parseUrlParams()
-  static getSearchUrlParams(param: string) {
-    const reg = new RegExp("(^|&)" + param + "=([^&]*)(&|$)", "i");
-    const tmp = window.location.search.split("?");
+    const tmp = mode === 'search'? window.location.search.split("?") : window.location.hash.split("?");
     if (tmp.length <= 1) {
       return null;
     }
@@ -67,38 +61,19 @@ export default class Utils {
   }
 
   // 判断开始时间必须小于结束时间
-  static checkCompareTime(startTime: string, endTime: string) {
+  static isTimeDuration(startTime: string, endTime: string) {
     // undefined 只有一个值（可以赋值）,  true：开始时间大于结束时间了（tips），false（可以赋值）
     if (startTime && endTime) {
-      let start = Utils.replaceSlash(Utils.formatDate(startTime));
-      let end = Utils.replaceSlash(Utils.formatDate(endTime));
-      if (new Date(start).getTime() >= new Date(end).getTime()) {
-        return true;
-      } else {
-        return false;
-      }
+      return new Date(startTime).getTime() >= new Date(endTime).getTime();
     }
   }
 
   // 获取时间差
-  static timeDiff(endTime: string): any {
+  static timeFromNow(endTime: string): any {
     if (endTime) {
-      let end = Utils.replaceSlash(Utils.formatDate(endTime));
-      return new Date(end).getTime() - new Date().getTime();
+      // let end = Utils.replaceSlash(Utils.formatDate(endTime));
+      return new Date(endTime).getTime() - new Date().getTime();
     }
-  }
-
-  static replaceSlash(data: string): string {
-    return data = data.replace(/-/g, "/");
-  }
-
-  // 根据时间排序
-  static compareTime(date: string){
-    return function(a: any, b: any){
-      let value1 = Utils.replaceSlash(a[date]);
-      let value2 = Utils.replaceSlash(b[date]);
-      return new Date(value2).getTime() - new Date(value1).getTime();
-    };
   }
 
   // 修复iOS设备从模板消息进来无法上传图片的bug

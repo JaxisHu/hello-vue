@@ -4,7 +4,7 @@ import { IBaseUrl, IType } from '@T/config/index';
 const env: string = process.env.NODE_ENV;
 /** Java后台接口域名配置 */
 let baseUrl = {
-  development: "//127.0.0.1:8001",
+  development: "//test.jadmin.you.zhibankeji.com",
   test: "//127.0.0.1:8001",
   uat: "//127.0.0.1:8001",
   production: "//127.0.0.1:8001",
