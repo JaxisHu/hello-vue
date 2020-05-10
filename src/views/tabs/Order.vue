@@ -8,6 +8,7 @@
 
 <script lang="ts">
   import { Component, Vue } from "vue-property-decorator";
+  import BizFn from "@U/bizFn";
   import Tabbar from "@C/Tabbar.vue";
   // import OrderList from "../order-system/order-list/Index.vue";
 
@@ -20,16 +21,9 @@
     private showCtn: boolean = false;
 
     activated() {
-      // 修正页面进来不带?的情况
-      const search: string = window.location.search;
-      if (!search) {
-        const newUrl: string = `${ window.location.origin }${ window.location.pathname }?${ window.location.hash }`;
-        if (window.location.href !== newUrl) {
-          window.location.href = newUrl;
-          return false;
-        }
-      }
-      this.showCtn = true;
+      const bizFn = new BizFn();
+      bizFn.setUrlWithHash();
+      this.showCtn = true; // 重定向页面体验优化
     }
   }
 </script>
