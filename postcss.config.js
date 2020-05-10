@@ -1,11 +1,12 @@
+// 使用postcss或package.json 配置 autoprefixer
 module.exports = {
   plugins: {
     'autoprefixer': {
-			browsers: ['Android >= 4.0', 'iOS >= 7']
+		overrideBrowserslist: ['Android >= 4.0', 'iOS >= 7']
     },
-		'postcss-pxtorem': {
-			rootValue: 16,
-			propList: ['*']
-		}
+	'postcss-pxtorem': {
+		rootValue: 16,
+		propList: ['*']
+	}
   }
 };
