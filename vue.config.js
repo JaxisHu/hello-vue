@@ -4,6 +4,8 @@
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const path = require("path");
+const production = process.env.NODE_ENV === "production";
+const LodashModuleReplacementPlugin = require("lodash-webpack-plugin");
 
 module.exports = {
 	publicPath: process.env.PUBLIC_PATH,
@@ -55,6 +57,10 @@ module.exports = {
 		const imagesRule = config.module.rule('images');
 		imagesRule.exclude.add(path.join(__dirname, './src/icons'));
 		imagesRule.test(/\.(png|jpe?g|gif|svg)(\?.*)?$/);
+		// if (production) {
+		// 	config.plugin("loadshReplace").use(new LodashModuleReplacementPlugin());
+		// 	//生产环境才开启 不然开发时lodash函数不起作用 也不报错
+		// }
 
 	},
 

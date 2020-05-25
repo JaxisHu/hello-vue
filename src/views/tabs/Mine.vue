@@ -1,5 +1,5 @@
 <template>
-  <div class="yc-layout" v-show="showCtn">
+  <div class="yc-layout">
     我的页面
     <tabbar></tabbar>
   </div>
@@ -16,12 +16,10 @@ import Tabbar from "@C/Tabbar.vue";
 })
 export default class YCMine extends Vue {
   // private $ajax: any;
-  private showCtn: boolean = false;
 
   activated() {
-    const bizFn = new BizFn();
-    bizFn.setUrlWithHash();
-    this.showCtn = true; // 重定向页面体验优化
+    BizFn.setUrlWithHash();
+    this.$toast.success("成功了哦成功了哦成功了哦成功了哦成功了哦成功了哦成功了哦成功了哦");
   }
 
 }

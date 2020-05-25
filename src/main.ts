@@ -1,18 +1,17 @@
 import Vue from 'vue';
-import App from './App.vue';
 // 全局引入，自动装载
 import '@S/index.scss';
 import "@C/vant";
 import "@U/ajax";
 import "@/icons";
-import "@/config";
+import "@/config/baseUrl";
 import "./router/guard";
 import './registerServiceWorker';
+import App from './App.vue';
 import router from './router/index';
 import store from './store/index';
 import hjComponent from '@C/index';
 import filters from './filters/index';
-
 
 Vue.use(hjComponent);
 

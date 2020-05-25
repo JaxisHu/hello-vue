@@ -38,3 +38,6 @@ Vue.use(SubmitBar);
 Vue.use(NoticeBar);
 Vue.use(Tab).use(Tabs);
 Vue.use(CountDown);
+
+// 将所有 Toast 的展示时长设置为 3500 毫秒
+Toast.setDefaultOptions({ duration: 3500 });

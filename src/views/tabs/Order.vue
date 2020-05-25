@@ -1,5 +1,5 @@
 <template>
-  <div class="yc-tabs-order" v-show="showCtn">
+  <div class="yc-tabs-order">
     订单页面
     <!--<order-list></order-list>-->
     <tabbar></tabbar>
@@ -18,12 +18,8 @@
   })
   export default class ycTabsOrder extends Vue {
 
-    private showCtn: boolean = false;
-
     activated() {
-      const bizFn = new BizFn();
-      bizFn.setUrlWithHash();
-      this.showCtn = true; // 重定向页面体验优化
+      BizFn.setUrlWithHash();
     }
   }
 </script>

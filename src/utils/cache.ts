@@ -1,34 +1,7 @@
 /**
- * 操作 cookie, localStorage, sessionStorage 封装
+ * 操作 localStorage, sessionStorage 封装
  */
-import Cookies from 'js-cookie';
-
 const prefix = process.env.NODE_ENV + '_';
-
-/**
- * 判断值是否为null或者undefined或者''或者'undefined'
- * @param val value
- */
-function isEmpty (val: any) {
-  return val === null || val === 'undefined' || val === '';
-}
-
-/**
- * ============ Cookie ============
- */
-export function getCookie (name: string) {
-  let val: any = Cookies.get(prefix + name);
-  return val || null;
-}
-
-export function setCookie (name: string, value: any, params= {}): void {
-  if (isEmpty(value)) return;
-  Cookies.set(prefix + name, value, params);
-}
-
-export function removeCookie (name: string, params= {}): void {
-  Cookies.remove(prefix + name, params);
-}
 
 /**
  * ============ localStorage ============

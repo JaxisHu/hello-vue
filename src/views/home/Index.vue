@@ -28,13 +28,13 @@ export default class Home extends Vue {
 
   async activated() {
     console.log("activated run");
-    const rst = await this.$ajax("GET", api.user.users);
-    if(rst) {
-      console.log("rst", rst, _.isArray(rst));
-      this.users = rst;
-      setStore('token', 'HuJie Big shuai b!');
-      setSession('users', rst);
-    }
+    // const rst = await this.$ajax("GET", api.user.users);
+    // if(rst) {
+    //   console.log("rst", rst, _.isArray(rst));
+    //   this.users = rst;
+    //   setStore('token', 'HuJie Big shuai b!');
+    //   setSession('users', rst);
+    // }
   }
 
   deactivated(): void {
