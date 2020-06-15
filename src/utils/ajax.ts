@@ -65,7 +65,7 @@ const httpRequest = async (method: string = 'GET', url: string, data: any = {}, 
       if (result.status === 200) {
         const res = result.data;
         const errCodeList = [1001, 1002, 1003]; // 需要通过错误码做进一步确认操作的情况
-        if(res.code === 1000) {
+        if(res.code === 0) {
           return res.data || true;
         } else if (errCodeList.includes(res.code)) {
           return res; // 页面上会根据res.code二次确认后做相应处理

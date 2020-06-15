@@ -3,12 +3,10 @@ import { IBaseUrl, IType } from '@T/config/index';
 
 const env: string = process.env.NODE_ENV;
 
-/** WeChat API是否开启debug模式，生产环境务必改为 false */
-export const WeChatAPIDebugMode = false;
-
 /** Java后台接口域名配置 */
 let baseUrl = {
-  development: "//127.0.0.1:8001",
+  development: "//test.jadmin.you.zhibankeji.com",
+  // development: "//127.0.0.1:8001",
   test: "//127.0.0.1:8001",
   uat: "//127.0.0.1:8001",
   production: "//127.0.0.1:8001",

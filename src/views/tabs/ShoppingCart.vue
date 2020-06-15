@@ -1,6 +1,10 @@
 <template>
   <div class="yc-tabs-shopping-cart">
-    购物车页面
+    <div class="row-wrap align-self-center p-node">
+      <div class="wp-100">123</div>
+      <div class="wp-100">456</div>
+      <div class="align-self-end wp-100">789</div>
+    </div>
     <!--<shopping-cart></shopping-cart>-->
     <tabbar></tabbar>
   </div>
@@ -25,4 +29,10 @@ export default class ycTabsShoppingCart extends Vue {
 </script>
 
 <style lang="scss" scoped>
+  .p-node{
+    height: 100vh;
+    >div:last-child {
+      margin-bottom: 60px;
+    }
+  }
 </style>

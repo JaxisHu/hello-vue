@@ -1,32 +1,42 @@
 .flex {
   display: flex;
 }
-.flex-row {
+.row-wrap {
+  display: flex;
+  flex-flow: row wrap;
+}
+.row-nowrap {
   display: flex;
   flex-flow: row nowrap;
 }
-.flex-col {
+.col-wrap {
   display: flex;
-  flex-flow: column nowrap;
+  flex-flow: column wrap;
 }
 .flex-one {
   flex: 1;
 }
+// 父属性：主轴上如何对齐
 .justify-between {
   justify-content: space-between;
 }
 .justify-center {
-  justify-content: center
+  justify-content: center;
 }
 .justify-around {
   justify-content: space-around;
 }
+// 父属性：交叉轴上如何对齐
+.align-items-start {
+  align-items: start;
+}
 .align-items-center {
   align-items: center;
 }
+// 子属性：覆盖align-items属性，与其他子节点对其方式不一样
 .align-self-center {
   align-self: center;
 }
-.align-self-bottom {
+.align-self-end {
   align-self: flex-end;
 }

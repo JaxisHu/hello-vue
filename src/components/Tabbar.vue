@@ -1,21 +1,10 @@
 <template>
   <div class="yc-tabbar">
-    <van-tabbar v-model="activeIdx" active-color="#169BD5" inactive-color="#333">
-      <van-tabbar-item to="/tabs/home" replace>
-        <span>首页</span>
-        <svg-icon slot="icon" slot-scope="props" :icon-class="props.active ? icon.home.active : icon.home.normal"/>
-      </van-tabbar-item>
-      <van-tabbar-item to="/tabs/shopping-cart" replace>
-        <span>购物车</span>
-        <svg-icon slot="icon" slot-scope="props" :icon-class="props.active ? icon.cart.active : icon.cart.normal"/>
-      </van-tabbar-item>
-      <van-tabbar-item to="/tabs/order" replace>
-        <span>订单</span>
-        <svg-icon slot="icon" slot-scope="props" :icon-class="props.active ? icon.order.active : icon.order.normal"/>
-      </van-tabbar-item>
-      <van-tabbar-item to="/tabs/mine" replace>
-        <span>我的</span>
-        <svg-icon slot="icon" slot-scope="props" :icon-class="props.active ? icon.mine.active : icon.mine.normal"/>
+    <van-tabbar v-model="activeIdx" :active-color="tabbarTheme.activeColor"
+                :inactive-color="tabbarTheme.inactiveColor">
+      <van-tabbar-item v-for="(item, index) in tabbarItems" :key="index" :to="item.toPath" replace>
+        <span>{{ item.name }}</span>
+        <svg-icon slot="icon" slot-scope="props" :icon-class="props.active ? item.iconActive : item.iconNormal"/>
       </van-tabbar-item>
     </van-tabbar>
 
@@ -28,30 +17,40 @@ import { Component, Vue } from "vue-property-decorator";
 
 @Component
 export default class Tabbar extends Vue {
-  private icon:any = {
-    // 日常普通皮肤
-    home: {normal: 'icon_home_normal', active: 'icon_home_selected'},
-    cart: {normal: 'icon_cart_normal', active: 'icon_cart_selected'},
-    order: {normal: 'icon_order_normal', active: 'icon_order_selected'},
-    mine: {normal: 'icon_mine_normal', active: 'icon_mine_selected'},
-
-    // 春节皮肤
-    // home: {normal: 'icon_home_normal-new-year', active: 'icon_home_selected-new-year'},
-    // cart: {normal: 'icon_cart_normal-new-year', active: 'icon_cart_selected-new-year'},
-    // order: {normal: 'icon_order_normal-new-year', active: 'icon_order_selected-new-year'},
-    // mine: {normal: 'icon_mine_normal-new-year', active: 'icon_mine_selected-new-year'},
+  // 可配置到config中,便于换主题
+  private tabbarTheme: any = {
+    activeColor: "#169BD5",
+    inactiveColor: "#333333",
   };
+  private tabbarItems: any = [
+    {
+      name: '首页',
+      toPath: '/tabs/home',
+      iconNormal: 'icon_home_normal',
+      iconActive: 'icon_home_selected',
+    },
+    {
+      name: '购物车',
+      toPath: '/tabs/shopping-cart',
+      iconNormal: 'icon_cart_normal',
+      iconActive: 'icon_cart_selected',
+    },
+    {
+      name: '订单',
+      toPath: '/tabs/order',
+      iconNormal: 'icon_order_normal',
+      iconActive: 'icon_order_selected',
+    },
+    {
+      name: '我的',
+      toPath: '/tabs/mine',
+      iconNormal: 'icon_mine_normal',
+      iconActive: 'icon_mine_selected',
+    }
+  ];
   private activeIdx: number = 0;
 
-  created(){
-    this.upactive();
-  }
-
-  updated(){
-    this.upactive();
-  }
-
-  upactive(){
+  activated(){
     switch (this.$route.path) {
       case '/tabs/home':
         this.activeIdx = 0;break;

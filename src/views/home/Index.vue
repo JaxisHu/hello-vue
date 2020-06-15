@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Inject } from "vue-property-decorator";
 import { api } from "@/api";
 import { setSession, setStore } from "@U/cache";
 import _ from "lodash";
@@ -19,6 +19,7 @@ import _ from "lodash";
   components: {}
 })
 export default class Home extends Vue {
+  @Inject() WeChatAPI: any;
   private $ajax: any;
   private users: any = [];
 
@@ -28,6 +29,10 @@ export default class Home extends Vue {
 
   async activated() {
     console.log("activated run");
+    const config = ["chooseImage", "uploadImage", "getLocalImgData"];
+    this.WeChatAPI(config, () => {
+      console.log("微信鉴权成功");
+    });
     // const rst = await this.$ajax("GET", api.user.users);
     // if(rst) {
     //   console.log("rst", rst, _.isArray(rst));
