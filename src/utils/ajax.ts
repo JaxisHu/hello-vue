@@ -35,18 +35,18 @@ const httpRequest = async (method: string = 'GET', url: string, data: any = {}, 
 
       let result: any = null;
       switch (method) {
-        case "POST":
-          result = await ajax.post(url, data, config);
-          break;
-        case "PUT":
-          result = await ajax.put(url, data, config);
-          break;
         case "GET":
           let dataStr = Utils.obj2params(data);  // "?a=1&b=2"
           if (dataStr) {
             url = url + dataStr;
           }
           result = await ajax.get(url, config);
+          break;
+        case "POST":
+          result = await ajax.post(url, data, config);
+          break;
+        case "PUT":
+          result = await ajax.put(url, data, config);
           break;
         case "DELETE":
           result = await ajax.delete(url, config);
@@ -56,15 +56,12 @@ const httpRequest = async (method: string = 'GET', url: string, data: any = {}, 
           Toast('请求接口协议错误！');
           return false;
       }
-      // 对result做处理
-      setTimeout(() => {
-        Toast.clear();
-      }, 300);
 
       // console.log("result", result);
       if (result.status === 200) {
         const res = result.data;
         const errCodeList = [1001, 1002, 1003]; // 需要通过错误码做进一步确认操作的情况
+        Toast.clear();
         if(res.code === 0) {
           return res.data || true;
         } else if (errCodeList.includes(res.code)) {
@@ -74,6 +71,7 @@ const httpRequest = async (method: string = 'GET', url: string, data: any = {}, 
           return false;
         }
       } else {
+        Toast.clear();
         Dialog.alert({ message: result.data.message });
         return false;
       }

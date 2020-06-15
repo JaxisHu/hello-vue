@@ -11,7 +11,7 @@
 <script lang="ts">
 import { Component, Vue, Inject } from "vue-property-decorator";
 import { api } from "@/api";
-import { setSession, setStore } from "@U/cache";
+import { setSession, setStore, getStore } from "@U/cache";
 import _ from "lodash";
 
 @Component({
@@ -32,14 +32,16 @@ export default class Home extends Vue {
     const config = ["chooseImage", "uploadImage", "getLocalImgData"];
     this.WeChatAPI(config, () => {
       console.log("微信鉴权成功");
+      this.login();
     });
-    // const rst = await this.$ajax("GET", api.user.users);
-    // if(rst) {
-    //   console.log("rst", rst, _.isArray(rst));
-    //   this.users = rst;
-    //   setStore('token', 'HuJie Big shuai b!');
-    //   setSession('users', rst);
-    // }
+  }
+
+  async login() {
+    setStore("userInfoOpenId", "oE5sO6Ha3SPZpCvWZ60Ko3qtbQLg");
+    const rst = await this.$ajax("POST", `${ api.common.loginOpenId }/${ getStore("userInfoOpenId") }`);
+    if(rst) {
+      console.log("rst", rst);
+    }
   }
 
   deactivated(): void {

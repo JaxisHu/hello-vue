@@ -5,4 +5,5 @@
 export default {
   weChatJsApiConfig: "/api/wechat/jsapi/signature",
   weChatGetUserInfo: "/api/wechat/oauth2/authorize",
+  loginOpenId: "/api/v1/dealer/login",
 };
