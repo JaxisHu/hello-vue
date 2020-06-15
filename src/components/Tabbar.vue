@@ -14,55 +14,16 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import gConfig from '@/config/index';
 
 @Component
 export default class Tabbar extends Vue {
-  // 可配置到config中,便于换主题
-  private tabbarTheme: any = {
-    activeColor: "#169BD5",
-    inactiveColor: "#333333",
-  };
-  private tabbarItems: any = [
-    {
-      name: '首页',
-      toPath: '/tabs/home',
-      iconNormal: 'icon_home_normal',
-      iconActive: 'icon_home_selected',
-    },
-    {
-      name: '购物车',
-      toPath: '/tabs/shopping-cart',
-      iconNormal: 'icon_cart_normal',
-      iconActive: 'icon_cart_selected',
-    },
-    {
-      name: '订单',
-      toPath: '/tabs/order',
-      iconNormal: 'icon_order_normal',
-      iconActive: 'icon_order_selected',
-    },
-    {
-      name: '我的',
-      toPath: '/tabs/mine',
-      iconNormal: 'icon_mine_normal',
-      iconActive: 'icon_mine_selected',
-    }
-  ];
+  private tabbarTheme:any = gConfig.tabbarTheme;
+  private tabbarItems:any = gConfig.tabbarItems;
   private activeIdx: number = 0;
 
   activated(){
-    switch (this.$route.path) {
-      case '/tabs/home':
-        this.activeIdx = 0;break;
-      case '/tabs/shopping-cart':
-        this.activeIdx = 1;break;
-      case '/tabs/order':
-        this.activeIdx = 2;break;
-      case '/tabs/mine':
-        this.activeIdx = 3;break;
-      default:
-        this.activeIdx = 999;break;
-    }
+    this.activeIdx = this.tabbarItems.filter((item: any) => item.toPath === this.$route.path)[0].activeIdx;
   }
 
 }
