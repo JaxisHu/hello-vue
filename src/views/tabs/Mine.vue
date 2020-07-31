@@ -29,9 +29,9 @@ export default class YCMine extends Vue {
       this.WeChatUserInfo();
     } else {
       // 重定向获取code和state
-      // this.WeChatUrlAuth(window.location.href, "snsapi_userinfo", "");
-      const redirect = 'http://test.jyc.zhibankeji.com/yc/index.html#/yc-tabs/home';
-      this.WeChatUrlAuth(redirect, "snsapi_userinfo", "");
+      this.WeChatUrlAuth(window.location.href, "snsapi_userinfo", "");
+      // const redirect = 'http://test.jyc.zhibankeji.com/yc/index.html#/yc-tabs/home';
+      // this.WeChatUrlAuth(redirect, "snsapi_userinfo", "");
     }
   }
 

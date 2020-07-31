@@ -7,8 +7,9 @@ const env: string = process.env.NODE_ENV;
 let baseUrl = {
   development: "//test.jadmin.you.zhibankeji.com",
   // development: "//127.0.0.1:8001",
-  test: "//127.0.0.1:8001",
-  uat: "//127.0.0.1:8001",
+  test: "//test.jadmin.you.zhibankeji.com",
+  jtest: "//test.jadmin.you.zhibankeji.com",
+  uat: "//test.jadmin.you.zhibankeji.com",
   production: "//127.0.0.1:8001",
 };
 

@@ -37,8 +37,8 @@ export default class Home extends Vue {
   }
 
   async login() {
-    setStore("userInfoOpenId", "oE5sO6Ha3SPZpCvWZ60Ko3qtbQLg");
-    const rst = await this.$ajax("POST", `${ api.common.loginOpenId }/${ getStore("userInfoOpenId") }`);
+    setStore("wxAuthOpenId", "oE5sO6Ha3SPZpCvWZ60Ko3qtbQLg");
+    const rst = await this.$ajax("POST", `${ api.common.loginOpenId }/${ getStore("wxAuthOpenId") }`);
     if(rst) {
       console.log("rst", rst);
     }

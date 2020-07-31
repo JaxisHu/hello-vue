@@ -1,7 +1,7 @@
 import { Vue, Component, Provide } from "vue-property-decorator";
 import { api } from '@A/index';
 import utils from '@U/index';
-import { setSession } from '@U/cache';
+import {setSession, setStore} from '@U/cache';
 import { Dialog } from 'vant';
 import gConfig from '@/config/index';
 
@@ -60,15 +60,19 @@ export default class appMixins extends Vue {
       state: utils.parseUrlParams('state', 'search')
     });
     if (!!result) {
-      setSession('wxAuthInfo', result); // 授权成功拿到的用户微信个人信息
+      // 授权成功拿到的用户微信个人信息
+      setStore('wxAuthOpenId', result.openId);
+      setSession('wxHeadImgUrl', result.headImgUrl);
+      setSession('wxNickName', result.nickname);
+      setSession('wxSex', result.sex);  // 微信性别，1：男 2：女
+      this.$router.go(-2);
       callback && callback(result);
     }
   }
 
   async getWeChatAPI(configJsApiList: any, callback: () => {}) {
     let result = await this.$ajax("GET", api.common.weChatJsApiConfig, {
-      // url: window.location.href.split('#')[0]
-      url: 'http://test.jyc.zhibankeji.com'
+      url: window.location.href.split('#')[0]
     });
     if (!!result) {
       wx.config({

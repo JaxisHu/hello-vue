@@ -6,7 +6,6 @@ import "@U/ajax";
 import "@/icons";
 import "@/config/baseUrl";
 import "./router/guard";
-import './registerServiceWorker';
 import App from './App.vue';
 import router from './router/index';
 import store from './store/index';
