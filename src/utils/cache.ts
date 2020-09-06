@@ -72,3 +72,32 @@ export const removeSession = function(key:string) {
 export const clearSession = function() {
   return sessionStorage.clear();
 };
+
+/** 缓存 */
+export const setOpenId = function(value: any) {
+  return setStore('MEIXI_OPEN_ID', value);
+};
+
+export const getOpenId = function(value: any = '') {
+  return getStore('MEIXI_OPEN_ID') || value;
+};
+
+export const setUserId = function(value: any) {
+  return setSession('MEIXI_USER_ID', value);
+};
+
+export const getUserId = function(value: any = '') {
+  return getSession('MEIXI_USER_ID') || value;
+};
+
+export const setWechatUserInfo = function(value: any) {
+  return setStore('MEIXI_WECHAT_USER_INFO', value);
+};
+
+export const getWechatUserInfo = function(value: any = '') {
+  return getStore('MEIXI_WECHAT_USER_INFO', 'obj') || value;
+};
+
+export const isSoleAgent = function() {
+  return getSession('userInfo','obj')? getSession('userInfo','obj').sole_agent : false;
+};

@@ -44,6 +44,20 @@ export default class Utils {
     });
   }
 
+  static getUrlParams(param: string) {
+    const reg = new RegExp("(^|&)" + param + "=([^&]*)(&|$)", "i");
+    const tmp = window.location.hash.split("?");
+    if (tmp.length <= 1) {
+      return null;
+    }
+    const r = tmp[tmp.length - 1].match(reg);
+    if (r != null) {
+      return decodeURIComponent(r[2]);
+    } else {
+      return null;
+    }
+  }
+
   // mode: hash, vue路由后带的参数
   // mode: search, 针对获取微信授权页面的code和state
   static parseUrlParams(param: string, mode: any = 'hash') {

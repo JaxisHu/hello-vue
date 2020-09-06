@@ -7,7 +7,6 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import BizFn from "@U/bizFn";
 import Tabbar from "@C/Tabbar.vue";
 import HomePage from "../home/Index.vue";
 
@@ -18,7 +17,6 @@ import HomePage from "../home/Index.vue";
 export default class Home extends Vue {
 
   activated() {
-    BizFn.setUrlWithHash();
   }
 
 }

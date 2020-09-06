@@ -12,9 +12,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import BizFn from "@U/bizFn";
 import Tabbar from "@C/Tabbar.vue";
-// import shoppingCart from "../goods-system/shopping-cart/Index.vue";
 
 @Component({
   name: "ycTabsShoppingCart",
@@ -23,7 +21,6 @@ import Tabbar from "@C/Tabbar.vue";
 export default class ycTabsShoppingCart extends Vue {
 
   activated() {
-    BizFn.setUrlWithHash();
   }
 }
 </script>

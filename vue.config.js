@@ -8,7 +8,7 @@ const production = process.env.NODE_ENV === "production";
 const LodashModuleReplacementPlugin = require("lodash-webpack-plugin");
 
 module.exports = {
-	publicPath: process.env.PUBLIC_PATH,
+	publicPath: process.env.VUE_APP_PUBLIC_PATH,
 	devServer: {
 		open: true, // 自启动
 		historyApiFallback: true, // 针对H5 API

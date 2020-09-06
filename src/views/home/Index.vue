@@ -11,36 +11,31 @@
 <script lang="ts">
 import { Component, Vue, Inject } from "vue-property-decorator";
 import { api } from "@/api";
-import { setSession, setStore, getStore } from "@U/cache";
-import _ from "lodash";
+import {setOpenId, getOpenId, setSession} from "@U/cache";
 
 @Component({
   name: "Home",
   components: {}
 })
 export default class Home extends Vue {
-  @Inject() WeChatAPI: any;
   private $ajax: any;
   private users: any = [];
 
-  mounted(): void {
-    console.log("mounted run");
-  }
-
   async activated() {
     console.log("activated run");
-    const config = ["chooseImage", "uploadImage", "getLocalImgData"];
-    this.WeChatAPI(config, () => {
-      console.log("微信鉴权成功");
-      this.login();
-    });
+    await this.login();
   }
 
   async login() {
-    setStore("wxAuthOpenId", "oE5sO6Ha3SPZpCvWZ60Ko3qtbQLg");
-    const rst = await this.$ajax("POST", `${ api.common.loginOpenId }/${ getStore("wxAuthOpenId") }`);
-    if(rst) {
-      console.log("rst", rst);
+    const payload = {
+      mobile: "15360860953",
+      verificationCode: "999999",
+      "openid": getOpenId()
+    };
+    let rst = await this.$ajax('POST', api.common.loginVerifyCode, payload);
+    if (!!rst) {
+      setSession('MEIXI_USER_INFO', rst);
+      setOpenId(rst.openid);
     }
   }
 

@@ -1,7 +1,6 @@
-import Vue from "vue";
 import Axios from "axios";
 import { Dialog, Toast } from 'vant';
-import { getStore } from "@U/cache";
+import { getStore, getUserId } from "@U/cache";
 import Utils from '@U/index';
 
 const ajax = Axios.create({
@@ -16,15 +15,16 @@ const ajax = Axios.create({
  * @param config  可配置headers、parmas
  * @constructor
  */
-const httpRequest = async (method: string = 'GET', url: string, data: any = {}, config: any = {}): Promise<any> => {
+export const httpRequest = async (method: string = 'GET', url: string, data: any = {}, config: any = {}): Promise<any> => {
     try {
       // 如果没有域名默认配置baseUrl
       if (url.indexOf("http://") === -1 && url.indexOf("https://") === -1) {
-        url = Vue.prototype.$config.baseUrl + url;
+        const domain: string = process.env.VUE_APP_DOMAIN;
+        url = domain + url;
       }
       // 从缓存中读取Token信息，加到header里面
-      const token = getStore('token');
-      ajax.defaults.headers.token = token;
+      ajax.defaults.headers.token = getStore('token');
+      ajax.defaults.headers.userid = getUserId();
 
       // POST请求时，支持表单提交，在config中配置contentType，
       // 如application/x-www-data-urlencoded, multipart/form-data
@@ -81,9 +81,3 @@ const httpRequest = async (method: string = 'GET', url: string, data: any = {}, 
       throw new Error(e);
     }
 };
-
-Vue.use({
-  install(Vue) {
-    Vue.prototype.$ajax = httpRequest;
-  }
-});

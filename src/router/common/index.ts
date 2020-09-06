@@ -6,6 +6,6 @@ export default [
     path: '/404',
     name: 'NotFound',
     component: NotFound,
-    meta: { title: '资源不存在' },
+    meta: { title: '404' },
   }
 ];

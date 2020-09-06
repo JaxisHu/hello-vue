@@ -7,22 +7,17 @@
 </template>
 
 <script lang="ts">
-  import { Component, Watch, Provide, Mixins } from "vue-property-decorator";
-  import { Action } from "vuex-class";
-  import app from "./app";
+  import { Component, Vue, Watch, Provide } from "vue-property-decorator";
+  // import { Action } from "vuex-class";
   // import { api } from './api';
 
   @Component({
-    // mounted() {
-    //   // 刷新页面时全局请求vuex
-    //   if (!!qusObj("userInfo")) {
-    //     (this as any).loadVuex();
-    //   }
-    // }
+    mounted() {
+      // 刷新页面时全局请求vuex
+      (this as any).loadVuex();
+    }
   })
-  export default class App extends Mixins(app) {
-    @Action("actionSetHistory") public setHistory!: any;
-
+  export default class App extends Vue {
     @Provide()
     async getVuex(): Promise<any> {
       await this.loadVuex();
@@ -36,7 +31,7 @@
     }
 
     loadVuex() {
-
+      console.log("process.env", process.env);
     }
 
   }

@@ -4,13 +4,13 @@ import '@S/index.scss';
 import "@C/vant";
 import "@U/ajax";
 import "@/icons";
-import "@/config/baseUrl";
 import "./router/guard";
 import App from './App.vue';
 import router from './router/index';
 import store from './store/index';
 import hjComponent from '@C/index';
 import filters from './filters/index';
+import { httpRequest } from '@U/ajax';
 
 Vue.use(hjComponent);
 
@@ -20,6 +20,7 @@ Object.keys(filters).forEach((key: any) => {
 });
 
 Vue.config.productionTip = false;
+Vue.prototype.$ajax = httpRequest;
 
 new Vue({
   router,
